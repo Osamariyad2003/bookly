@@ -28,17 +28,17 @@
             </intent-filter>
         </activity>
         <!--Intent filter to capture System Browser or Authenticator calling back to our app after sign-in-->
-    <activity
-        android:name="com.microsoft.identity.client.BrowserTabActivity">
-        <intent-filter>
-            <action android:name="android.intent.action.VIEW" />
-            <category android:name="android.intent.category.DEFAULT" />
-            <category android:name="android.intent.category.BROWSABLE" />
-            <data android:scheme="msauth"
-                android:host="<YOUR_PACKAGE_NAME>"
-                android:path="<YOUR_BASE64_URL_ENCODED_PACKAGE_SIGNATURE>" />
-        </intent-filter>
-    </activity>
+<!--    <activity-->
+<!--        android:name="com.microsoft.identity.client.BrowserTabActivity">-->
+<!--        <intent-filter>-->
+<!--            <action android:name="android.intent.action.VIEW" />-->
+<!--            <category android:name="android.intent.category.DEFAULT" />-->
+<!--            <category android:name="android.intent.category.BROWSABLE" />-->
+<!--            <data android:scheme="msauth"-->
+<!--                android:host="<YOUR_PACKAGE_NAME>"-->
+<!--                android:path="<YOUR_BASE64_URL_ENCODED_PACKAGE_SIGNATURE>" />-->
+<!--        </intent-filter>-->
+<!--    </activity>-->
         <!-- Don't delete the meta-data below.
              This is used by the Flutter tool to generate GeneratedPluginRegistrant.java -->
         <meta-data

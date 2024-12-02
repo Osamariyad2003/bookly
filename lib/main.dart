@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import 'core/app_routes.dart';
+import 'core/routes.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  FlutterNativeSplash.preserve(
-      widgetsBinding: WidgetsFlutterBinding.ensureInitialized());
 
-  runApp(const MyApp());
+  runApp( MyApp());
 }
 
 class MyHomePage extends StatelessWidget {
@@ -31,13 +33,16 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: MyHomePage(),
+    return ScreenUtilInit(
+      minTextAdapt: true,
+      splitScreenMode: true,
+        builder: (_, child) {
+          return MaterialApp(
+            onGenerateRoute: AppRouter.onGenerateRoute,
+            debugShowCheckedModeBanner: false,
+            initialRoute: Routes.register,
+          );
+        }
     );
   }
 }
