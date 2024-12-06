@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-import 'core/app_routes.dart';
-import 'core/routes.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  FlutterNativeSplash.preserve(
+      widgetsBinding: WidgetsFlutterBinding.ensureInitialized());
 
-  runApp( Bookly());
+  runApp(const MyApp());
 }
 
 class MyHomePage extends StatelessWidget {
@@ -20,29 +18,26 @@ class MyHomePage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('My Home Page'),
       ),
-      body:  Center(
+      body: const Center(
         child: Text('Welcome to My Home Page!'),
       ),
     );
   }
 }
 
-class Bookly extends StatelessWidget {
-  const Bookly({super.key});
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return ScreenUtilInit(
-      minTextAdapt: true,
-      splitScreenMode: true,
-        builder: (_, child) {
-          return MaterialApp(
-            onGenerateRoute: AppRouter.onGenerateRoute,
-            debugShowCheckedModeBanner: false,
-            initialRoute: Routes.register,
-          );
-        }
+    return MaterialApp(
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        useMaterial3: true,
+      ),
+      home: MyHomePage(),
     );
   }
 }
