@@ -20,12 +20,13 @@ class SignInCubit extends Cubit<SignInState> {
       // Call your API service to attempt signing in
       final result = await _apiService.signIn(email, password);
 
-      if (result.success) {
+      if (result.success == true) {
         emit(SignInSuccessState()); // Emit success state on successful sign-in
         _getUser(); // Optionally fetch user data after successful sign-in
       } else {
         emit(SignInErrorState()); // Emit error state if sign-in fails
       }
+
     } catch (error) {
       emit(SignInErrorState()); // Emit error state in case of an exception
     }
@@ -48,4 +49,8 @@ class SignInCubit extends Cubit<SignInState> {
       emit(GetUserErrorState("Error fetching user: $error")); // Emit error in case of failure
     }
   }
+}
+
+extension on Map<String, dynamic> {
+  bool? get success => null;
 }

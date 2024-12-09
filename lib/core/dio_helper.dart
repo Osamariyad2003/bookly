@@ -111,6 +111,18 @@ class DioHelper {
       }
     }
   }
+  Future<Map<String, dynamic>> signIn(String email, String password) async {
+    final response = await _dio?.post('/login', data: {
+      'email': email,
+      'password': password,
+    });
+    return response?.data;
+  }
+
+  Future<Map<String, dynamic>> getUserData() async {
+    final response = await _dio?.get('/user');
+    return response?.data;
+  }
 
   static Future<Response> deleteData({
     required String url,
