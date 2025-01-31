@@ -167,6 +167,32 @@ def login():
 def protected():
     current_user = get_jwt_identity()
     return jsonify({"message": f"Welcome, {current_user['username']}!"}), 200
+@app.route('/user', methods=['GET'])
+@jwt_required()
+def get_user_data():
+    """
+    Get data for the currently authenticated user.
+    We assume your token identity looks like {"username": "someusername"}
+    and we use that username to query the DB.
+    """
+    # Extract the user identity from the JWT
+    current_user = get_jwt_identity()  # e.g. {"username": "someusername"}
+
+    # Retrieve the user from the database using the 'username' from JWT
+    user_record = User.query.filter_by(username=current_user['username']).first()
+
+    if not user_record:
+        return jsonify({"error": "User not found"}), 404
+
+    # Avoid returning sensitive info like passwords
+    user_data = {
+        "id": user_record.id,
+        "username": user_record.username,
+        "email": user_record.email,
+        "phone": user_record.phone
+    }
+
+    return jsonify(user_data), 200
 
 @app.route('/summarize', methods=['POST'])
 def summarize_pdf():

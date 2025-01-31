@@ -4,6 +4,7 @@ import 'package:bookly/features/auth/controller/sign_up_cubit.dart';
 import 'package:bookly/features/auth/controller/sign_up_state.dart';
 import 'package:bookly/features/auth/widgets/buttton.dart';
 import 'package:bookly/features/auth/widgets/form_firld.dart';
+import 'package:bookly/features/home/views/home_page.dart';
 import 'package:bookly/features/summrize/views/summary_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -21,7 +22,7 @@ class SignUpView extends StatelessWidget {
     return BlocConsumer<SignUpCubit,SignUpState>(
         listener: (BuildContext context, SignUpState state) {
           if(state is SignUpSuccessState)
-            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> SummaryView()));
+            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> HomePage()));
         },
         builder: (BuildContext context, SignUpState state) {
           var cubit = context.read<SignUpCubit>();

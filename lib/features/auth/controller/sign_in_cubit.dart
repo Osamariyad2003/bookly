@@ -11,7 +11,6 @@ class SignInCubit extends Cubit<SignInState> {
   UserModel? model;
 
   SignInCubit() : super(SignInInitialState());
-   DioHelper?  _apiService; // Inject your API service
   Future<void> signIn(String email, String password) async {
     emit(SignInLoadingState());
        await DioHelper.postData(url: 'http://192.168.1.78:5000/login', data: {
@@ -41,15 +40,19 @@ class SignInCubit extends Cubit<SignInState> {
     });
 
     try {
-      final user = await _apiService?.getUserData();
+      await DioHelper.getData(url: 'http://192.168.1.78:5000/user').then((value){
+        if (value != null) {
+          emit(GetUserSuccessState()); // Emit success state if user is fetched successfully
+        } else {
+          emit(GetUserErrorState("User not found")); // Emit error if user data is not found
+        }
+      }).catchError((e){
+        emit(GetUserErrorState("Error fetching user: $e")); // Emit error in case of failure
 
-      if (user != null) {
-        emit(GetUserSuccessState()); // Emit success state if user is fetched successfully
-      } else {
-        emit(GetUserErrorState("User not found")); // Emit error if user data is not found
-      }
+      });
     } catch (error) {
       emit(GetUserErrorState("Error fetching user: $error")); // Emit error in case of failure
+
     }
   }
 }

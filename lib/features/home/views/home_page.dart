@@ -14,9 +14,6 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        leading:IconButton(onPressed: (){
-          Navigator.pop(context);
-        }, icon: Icon(Icons.arrow_back_ios)),
         title:Image.asset(height: 30,"aseets/images/spalch_image.png",fit: BoxFit.cover,) ,
         backgroundColor: ColorStyles.buttonColor,
       ),

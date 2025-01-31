@@ -8,7 +8,7 @@ Widget NavContainr({required IconData icon,required String title,required VoidCa
     width: 200,
     child: Column(
       children: [
-        IconButton(onPressed: fun, icon: Icon(icon,size:24,color: ColorStyles.buttonColor,)),
+        IconButton(onPressed: fun, icon: Icon(icon,size:42,color: ColorStyles.buttonColor,)),
         SizedBox(height: 8,),
         Text(title,style: TextStyles.headerStyle,),
       ],
