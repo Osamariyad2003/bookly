@@ -43,15 +43,6 @@ Key highlights include:
 ![Summarize Screen ](screenshots/summarize.jpg)
 
 
-## Summarize Screen
-![Summarize Screen ](screenshots/summarize.jpg)
-
-
-## Summarize Screen
-![Summarize Screen ](screenshots/summarize.jpg)
-
-
-
 ## Library Screen
 ![Library Screen ](screenshots/libaray.jpg)
 
